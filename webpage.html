@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Trends in Memory Errors</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script type="text/javascript" src="javascript/jquery-latest.js"></script>
+    <script type="text/javascript" src="javascript/helper.js"></script>
+    <!--
+        <script src="canvastext.js"></script>
+        <script src="gnuplot_common.js"></script>
+        <script src="gnuplot_mouse.js"></script>
+        <script src="absolute2.js"></script>
+    -->
+    </head>
+    <!--<body onload="absolute2(); gnuplot.toggle_grid">-->
+    <body>
+        <div id="outer">
+            <div id="container">
+
+                <div class="title">
+                    Trends in Memory Errors
+                </div>
+
+                <div class="whiteboard">
+
+                    <div class="header" id="header"> 
+                        <span class="info">
+                            view per:
+                              <a href="javascript: show('1')">month</a>
+                            | <a href="javascript: show('2')">2 months</a>
+                            | <a href="javascript: show('3')">3 months</a>
+                        </span>
+                    </div> <!-- header -->
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute0')" style="text-decoration: none">Memory error vulnerabilities</a>
+                        <div class="subx" id='sub_absolute0' style="display: none">
+                            <div class="subimage">
+                                <img id='absolute0' src='./output/absolute0.1.png'/>
+                            </div>
+                            Description of first figure
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute1')" style="text-decoration: none">Memory error vulnerabilities and exploits</a>
+                        <div class="subx" id='sub_absolute1' style="display: none">
+                            <div class="subimage">
+                                <img id='absolute1' src='./output/absolute1.1.png'/>
+                            </div>
+                            Description of second figure
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute2')" style="text-decoration: none">Memory error vulnerabilities compared to total</a>
+                        <div class="subx" id='sub_absolute2' style="display: none">
+                            <div class="subimage">
+                                <img id='absolute2' src='./output/absolute2.1.png'/> 
+                            </div>
+                            Description of third figure
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute_and_web')" style="text-decoration: none">Memory error vulnerabilities compared to total (including web)</a>
+                        <div class="subx" id='sub_absolute_and_web' style="display: none">
+                            <div class="subimage">
+                                <img id='absolute_and_web' src='./output/absolute_and_web.1.png'/>
+                            </div>
+                            Description of fourth figure
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_percentage')" style="text-decoration: none">Percentage of memory error vulnerabilities and exploits</a>
+                        <div class="subx" id='sub_percentage' style="display: none">
+                            <div class="subimage">
+                                <img id='percentage' src='./output/percentage.1.png'/>
+                            Description of fifth figure
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_percentage_and_web')" style="text-decoration: none">Percentage of memory error vulnerabilities and exploits (including web)</a>
+                        <div class="subx" id='sub_percentage_and_web' style="display: none">
+                            <div class="subimage">
+                                <img id="percentage_and_web" src='./output/percentage_and_web.1.png'/>
+                            </div>
+                            Description of sixth figure
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_categories_vulns')" style="text-decoration: none">Categorization of memory error vulnerabilities</a>
+                        <div class="subx" id='sub_categories_vulns' style='display: none'>
+                            <div class="subimage">
+                                <img id="categories_vulns" src='./output/categories_vulns.1.png'/>
+                            </div>
+                            Description of seventh figure
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_categories_exploits')" style="text-decoration: none">Categorization of memory error exploits</a>
+                        <div class="subx" id='sub_categories_exploits' style='display: none'>
+                            <div class="subimage">
+                                <img id="categories_exploits" src='./output/categories_exploits.1.png'/>
+                            </div>
+                            Description of eigth figure
+                        </div>
+                    </div>
+
+                    <div class="footer" id="footer"> 
+                        <span class="info">
+                            March 2013
+                            | <a href="disclaimer.html">disclaimer</a>
+                            | <a href="http://www.vu.nl/nl/studenten/digitale-voorzieningen/ict-voorzieningen/draadloos-internet/index.asp">more info</a> 
+                            | <a href="http://www.vurooster.nl">vurooster.nl</a> 
+                            | <a href="faq.html">help!</a>
+                        </span>
+                    </div> <!-- footer -->
+                </div> <!-- whiteboard -->
+            </div>  <!-- container -->
+        </div> <!-- outer -->
+    </body>
+</html>
