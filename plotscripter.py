@@ -6,6 +6,7 @@ import xml.etree.ElementTree
 import sys
 import re
 import collections
+import gzip
 import urllib
 import logging
 import time
@@ -53,7 +54,13 @@ def system(args, env = None):
     out, err = p.communicate()
     return out, err, p.returncode
 
-def download(url, local):
+def download(url, local, is_gzipped):
+    modified_local = -1 
+    modified_remote = 0
+
+    if is_gzipped:
+        url = url + '.gz'
+
     # get last-modified remote
     headers = urllib.urlopen(url).info().headers
     for header in headers:
@@ -62,12 +69,27 @@ def download(url, local):
 
     # get last-modified local (if any)
     try:             modified_local = os.path.getmtime(local)
-    except os.error: modified_local = 0
+    except os.error: modified_local = -1
 
     # only download if last-modified differs
     if modified_local < modified_remote:
         logger.info("Downloading " + url)
-        urllib.urlretrieve(url, local)
+
+        if (is_gzipped):
+            urllib.urlretrieve(url, local + ".gz")
+	    
+            # gunzip
+    	    in_f  = gzip.open(local + ".gz", "rb")
+            out_f = open(local, 'wb')
+            out_f.write(in_f.read() )
+            in_f.close()
+            out_f.close()
+        else:
+            urllib.urlretrieve(url, local)
+	
+    else:
+        logger.info("Not downloading " + url + " - already got " + local)
+
 
 def inc_vmem(date, key, exploit):
     vulns[date][key]   += 1
@@ -179,19 +201,21 @@ def download_entries():
         filename_local  = os.path.join(intermediate_path, filename_remote)
         url = 'http://static.nvd.nist.gov/feeds/xml/cve/' + filename_remote
 
-        download(url, filename_local)
+        download(url, filename_local, True)
 
         logger.info("Parsing " + filename_remote)
         parse_xml(filename_local)
 
-    filename_remote = 'archive.tar.bz2'
+#   filename_remote = 'archive.tar.bz2'
+    filename_remote = 'files.csv'
     filename_local  = os.path.join(intermediate_path, filename_remote)
-    url = 'http://www.exploit-db.com/' + filename_remote
+#   url = 'http://www.exploit-db.com/' + filename_remote
+    url = 'https://raw.githubusercontent.com/offensive-security/exploit-database/master/' + filename_remote
 
-    download(url, filename_local)
+    download(url, filename_local, False)
     
-    system(['tar', '-jxvf', filename_local, '-C', intermediate_path, 'files.csv'])
-    system(['chmod', '644', filescsv])
+#   system(['tar', '-jxvf', filename_local, '-C', intermediate_path, 'files.csv'])
+#   system(['chmod', '644', filescsv])
     os.system('sort ' + filescsv + '| uniq > ' + explocsv)
 
     parse_csv(filescsv)
