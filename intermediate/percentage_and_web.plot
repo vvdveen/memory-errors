@@ -26,9 +26,9 @@ set xtics format "%Y"
 
 set key top left reverse
 set output './output/percentage_and_web.3.js'
-set xrange ['1997-01':'2013-04']
+set xrange ['1997-01':'2017-01']
 set yrange [0:50]
-set key at '1997-09',48
+set key at '1998-01',48
 # TALK-4b: MEMORY ERRORS AS PERCENTAGE OF TOTAL VULNERABILITIES / EXPLOITS
 set title "Memory errors as a percentage of total reported"
 

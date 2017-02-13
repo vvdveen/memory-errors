@@ -26,9 +26,9 @@ set xtics format "%Y"
 
 set key top left reverse
 set output './output/categories_vulns.3.js'
-set xrange ['2000-01':'2013-04']
+set xrange ['2000-01':'2017-01']
 set yrange [0:300]
-set key at '2000-08',292
+set key at '2000-10',292
 # TALK-5: CATEGORIZATION OF VULNERABILITIES
 set title 'Memory error vulnerabilities categorized'
 

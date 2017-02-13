@@ -26,9 +26,9 @@ set xtics format "%Y"
 
 set key top left reverse
 set output './output/absolute_and_web.3.js'
-set xrange ['1997-01':'2013-04']
+set xrange ['1997-01':'2017-01']
 set yrange [0:1800]
-set key at '1997-09',1755
+set key at '1998-01',1755
 # TALK-3: TOTAL VULNERABILITIES, WEB VULNERABILITIES AND MEMORY ERROR VULNERABILITIES
 set title 'Memory errors compared to total number of vulnerabilities + web'
 

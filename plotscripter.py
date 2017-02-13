@@ -238,6 +238,8 @@ def makeplotscript( (name, script, min_x_year, max_y), type, step):
     #   y = <max-y> - 2.5%
     label_x_months = int(0.05 * ( ((max_x_year - min_x_year) * 12) + max_x_month ))
     label_x_month  =              int(label_x_months % 12)
+    if label_x_month == 0:
+        label_x_month = 1
     label_x_year   = min_x_year + int(label_x_months / 12)
     
     label_y = int(max_y - (0.025 * max_y))

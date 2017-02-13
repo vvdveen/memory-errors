@@ -26,9 +26,9 @@ set xtics format "%Y"
 
 set key top left reverse
 set output './output/absolute0.3.js'
-set xrange ['1997-01':'2013-04']
+set xrange ['1997-01':'2017-01']
 set yrange [0:300]
-set key at '1997-09',292
+set key at '1998-01',292
 # MEMORY ERROR VULNERABILITIES
 set title "Memory errors"
 
