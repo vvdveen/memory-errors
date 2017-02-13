@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Trends in Memory Errors</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script type="text/javascript" src="javascript/jquery-latest.js"></script>
+    <script type="text/javascript" src="javascript/helper.js"></script>
+    <!--
+        <script src="canvastext.js"></script>
+        <script src="gnuplot_common.js"></script>
+        <script src="gnuplot_mouse.js"></script>
+        <script src="absolute2.js"></script>
+    -->
+    </head>
+    <!--<body onload="absolute2(); gnuplot.toggle_grid">-->
+    <body>
+        <div id="outer">
+            <div id="container">
+
+                <div class="title">
+                    <h1>Trends in Memory Errors</h1>
+<p>
+This page lists a number of plots that depict trends in discovered memory
+errors. We look at both vulnerabilities (extracted from the <a
+href="https://nvd.nist.gov/download.cfm#CVE_FEED">CVE data feed</a>) and
+exploits (via <a
+href="https://github.com/offensive-security/exploit-database">exploit-db</a>).
+We classify vulnerabilities and exploits by searching for keywords: issues with
+the words <i>php</i>, <i>sql</i>, or <i>xss</i> are said to be
+<b>web</b>-related; <b>stack</b>-based vulnerabilities and exploits contain the
+words <i>stack-based</i> or <i>stack overflow</i> in their description, for
+<b>heap</b>-based ones, we look for <i>heap-based</i>, <i>heap overflow</i>,
+<i>use-after-free</i>, and <i>double free</i>; <b>integer</b> issues must
+contain the words <i>integer</i>, <i>signedness</i>, or <i>off-by-one</i>; we
+identify <b>pointer</b> issues by looking for <i>dereference</i>, and
+<i>dangling pointer</i>; issues describing <b>format string</b> issues should
+contain the string <i>format string</i>; and finally vulnerabilities and
+exploits that contain the word <i>overflow</i> are dubbed as <b>other</b>.
+</p>
+
+<p>
+Each vulnerability is counted only once in above order, i.e., a format string
+issue that allows an attacker to execute sql commands on a remote server is
+considered a web vulnerability. This may not always yield honest results, but
+it still gives an useful insight in trends in memory-errors.
+</p>
+
+<p>
+In the top right corner, you can select whether vulnerabilities and exploits
+should be processed per 1, 2, or 3 months; using a higher time unit result in
+less fluctuations. You can click on a title to show or hide its figure and
+description, allowing you to compare graphs with each other easily.
+</p>
+
+<p>
+The source code for this project is 
+<a href="http://www.github.com/vvdveen/memory-errors/">open source</a>. Feel
+free to do with it what you want, but remember, if it breaks something, you get
+to keep both halves. If you want to know more about memory errors in general,
+have a look at our paper 
+<a href="http://vvdveen.com/publications/RAID2012.pdf">Memory Errors: The Past, the Present, and the Future</a>.
+</p>
+
+                </div>
+
+                <div class="whiteboard">
+
+                    <div class="header" id="header"> 
+                        <span class="info">
+                            view per:
+                              <a href="javascript: show('1')">month</a>
+                            | <a href="javascript: show('2')">2 months</a>
+                            | <a href="javascript: show('3')">3 months</a>
+                        </span>
+                    </div> <!-- header -->
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute0')" style="text-decoration: none">Memory error vulnerabilities</a>
+                        <div class="subx" id='sub_absolute0' style="display: block">
+                            <div class="subimage">
+                                <img id='absolute0' src='./output/absolute0.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the absolute number of reported memory-error vulnerabilities
+per time unit. As of August 2016, it shows a clear linear trend over the period
+1997-2007, after which the number of reported issues seems to stabilize to around
+60 per month.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute1')" style="text-decoration: none">Memory error vulnerabilities and exploits</a>
+                        <div class="subx" id='sub_absolute1' style="display: block">
+                            <div class="subimage">
+                                <img id='absolute1' src='./output/absolute1.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the absolute number of both reported memory-error
+vulnerabilities and exploits per time unit. It shows that the number of available
+exploits is following the same (but slightly delayed) trend as reported vulnerabilities.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute2')" style="text-decoration: none">Memory error vulnerabilities compared to total</a>
+                        <div class="subx" id='sub_absolute2' style="display: block">
+                            <div class="subimage">
+                                <img id='absolute2' src='./output/absolute2.1.png'/> 
+                            </div>
+                            <div class="subheader">
+This figure shows the absolute number of both reported memory-errors and
+<i>all</i> vulnerabilities. Clearly, the latter is going all over the place,
+while the number of found memory-errors seems relatively stable.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_absolute_and_web')" style="text-decoration: none">Memory error vulnerabilities compared to total (including web)</a>
+                        <div class="subx" id='sub_absolute_and_web' style="display: block">
+                            <div class="subimage">
+                                <img id='absolute_and_web' src='./output/absolute_and_web.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the absolute number of reported memory-error, web, and all
+vulnerabilities. It shows that the irregularities of all reported vulnerabilities
+can be contributed to web vulnerabilities.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_percentage')" style="text-decoration: none">Percentage of memory error vulnerabilities and exploits</a>
+                        <div class="subx" id='sub_percentage' style="display: block">
+                            <div class="subimage">
+                                <img id='percentage' src='./output/percentage.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the relative number of memory-error vulnerabilities and
+exploits, subject to the total number of reported vulnerabilities and available
+exploits. It shows that since 2006, memory-errors are responsible for 10 to 20%
+of all issues, and that exploiting is a bit harder than finding an issue.
+Although 2013 may have been the start of a downward trend, recent numbers from
+2015 and 2016 indicate that memory errors are back in business, justifying
+system security research.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_percentage_and_web')" style="text-decoration: none">Percentage of memory error vulnerabilities and exploits (including web)</a>
+                        <div class="subx" id='sub_percentage_and_web' style="display: block">
+                            <div class="subimage">
+                                <img id="percentage_and_web" src='./output/percentage_and_web.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the relative number of memory-error <b>and</b> web
+vulnerabilities and exploits, subject to their totals. It shows that the
+downward trend in the percentage of memory-errors around the year 2003 can
+solely be contributed to the rise of the world-wide web. It also shows that over
+the last years, web issues seem to become less dominant, resulting in a slight
+increase of memory-errors.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_categories_vulns')" style="text-decoration: none">Categorization of memory error vulnerabilities</a>
+                        <div class="subx" id='sub_categories_vulns' style='display: block'>
+                            <div class="subimage">
+                                <img id="categories_vulns" src='./output/categories_vulns.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the number of reported memory-error vulnerabilities,
+categorized in stack-based, heap-based, integer, pointer, format string, and
+other issues. As expected, it shows that the stack was a popular attack vector
+in the early years, while recently the heap has become a more prevalent topic.
+This might indicate that stack-based issues are easier to find and solve
+automatically (e.g., by compiler extensions), while the heap is still much more
+difficult to reason about.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entry">
+                        <a href="javascript: toggle('sub_categories_exploits')" style="text-decoration: none">Categorization of memory error exploits</a>
+                        <div class="subx" id='sub_categories_exploits' style='display: block'>
+                            <div class="subimage">
+                                <img id="categories_exploits" src='./output/categories_exploits.1.png'/>
+                            </div>
+                            <div class="subheader">
+This figure shows the number of reported memory error exploits, categorized in
+stack-based, heap-based, integer, pointer, format string, and other issues. It
+shows that exploits are slowly catching up with trends in reported
+vulnerabilities: up till 2015, the stack was still the most popular attack
+vector, while only recently attackers started to look with more detail into heap
+attacks. It also shows that format string exploits are basically non-existent.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer" id="footer"> 
+                        <span class="info">
+							<a href="http://vusec.net">vusec</a> | <a href="http://vvdveen.com">vvdveen.com</a> | Last updated: August 2016
+                        </span>
+                    </div> <!-- footer -->
+                </div> <!-- whiteboard -->
+            </div>  <!-- container -->
+        </div> <!-- outer -->
+    </body>
+</html>
